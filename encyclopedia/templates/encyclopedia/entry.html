@@ -1,0 +1,9 @@
+{% extends "encyclopedia/layout.html" %}
+    {% comment %} <a href={% url "editEntry" TITLE_ENTRY %}>editEntry</a> {% endcomment %}
+{% block title %}{{TITLE_ENTRY}}{% endblock %}
+{% block body %}
+    {{HTML_ENTRY | safe}}
+{% endblock %}
+{% block nav %}
+    <a href={% url "editEntry" TITLE_ENTRY %}>editEntry</a>
+{% endblock %}

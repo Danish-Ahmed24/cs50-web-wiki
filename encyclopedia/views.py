@@ -34,36 +34,32 @@ def displayEntryContentByTitle(request,TITLE):
     if TITLE.lower() in util.toLowerCaseList(entries):
         md_content = util.get_entry(TITLE)
         html_content = markdown.markdown(md_content)
-        return render(request,"encyclopedia/contentLayout.html",{
+        return render(request,"encyclopedia/entry.html",{
             "TITLE_ENTRY": TITLE,
             "HTML_ENTRY": html_content
         })
         
     else:
-        return render(request,"encyclopedia/contentLayout.html",{
+        return render(request,"encyclopedia/error.html",{
             "TITLE_ENTRY": "ENTRY NOT FOUND",
-            "HTML_ENTRY": f"<h1>{TITLE} NOT FOUND</h1>"
+            "HTML_ENTRY": f"<h1>ERROR: {TITLE} PAGE NOT FOUND</h1>"
         })
 
 
     # agar woh entry wrt TITLE HAI TOH  
     # display karo warna create new one 
 
-
-
 def addEntry(request):
     if request.method=="POST":
         data = request.POST
         entries = util.list_entries()
         if data['title'].lower() in util.toLowerCaseList(entries):
-            print("not saved")
-            return render(request,"encyclopedia/contentLayout.html",{
-            "TITLE_ENTRY": "ENTRY NOT FOUND",
-            "HTML_ENTRY": f"<h1>{data['title']} NOT FOUND</h1>"
+            return render(request,"encyclopedia/error.html",{
+            "TITLE_ENTRY": "ERROR",
+            "HTML_ENTRY": f"<h1>ERROR: {data['title']} Already Exists</h1>"
             })
         else:
             util.save_entry(data['title'],data['textarea'])
-            print("saved")
             return redirect('entry',TITLE= data['title'])
     return render(request,"encyclopedia/add.html")
 

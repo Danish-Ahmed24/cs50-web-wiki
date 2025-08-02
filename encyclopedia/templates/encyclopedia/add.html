@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Entry</title>
-</head>
-
-<body>
+{% extends "encyclopedia/layout.html" %}
+{% block title %}Add Entry{% endblock %}
+    
+{% block body %}
+    <h1>Add Entry</h1>
     <form action="{% url 'addEntry' %}" method="post">
         {% csrf_token %}
-        <label for="title">Enter Title:</label>
-        <input type="text" name="title" id="title">
-        <label for="textarea">Enter Content:</label>
-        <textarea name="textarea" id="textarea"></textarea>
+        <label for="title">Enter Title:</label><br>
+        <input type="text" name="title" id="title"><br>
+        <label for="textarea">Enter Content:</label><br>
+        <textarea name="textarea" id="textarea" rows="10" cols="10"></textarea><br>
         <input type="submit" value="Submit">
     </form>
-</body>
-
-</html>
+{% endblock %}

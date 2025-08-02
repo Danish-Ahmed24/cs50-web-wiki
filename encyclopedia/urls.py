@@ -9,4 +9,4 @@ urlpatterns = [
     path("<str:TITLE>",views.displayEntryContentByTitle,name="entry"),
     path("<str:TITLE>/edit",views.editEntry,name="editEntry")
 ]
-#  edit entry ka title kese malom karoge pagal
+#  edit entry ka title kese malom karoge pagal 
