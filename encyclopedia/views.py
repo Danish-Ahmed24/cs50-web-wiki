@@ -2,10 +2,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 import markdown
 from . import util
+from django import forms
 
 
 def index(request):
-    # search function happemging here bruh!
+    # search function happenging here bruh!
     if request.method == "POST":
         entries = util.list_entries()
         title = request.POST['q']
@@ -50,3 +51,19 @@ def displayEntryContentByTitle(request,TITLE):
 
 
 
+def addEntry(request):
+    if request.method=="POST":
+        data = request.POST
+        entries = util.list_entries()
+        if data['title'].lower() in util.toLowerCaseList(entries):
+            print("not saved")
+            return render(request,"encyclopedia/contentLayout.html",{
+            "TITLE_ENTRY": "ENTRY NOT FOUND",
+            "HTML_ENTRY": f"<h1>{data['title']} NOT FOUND</h1>"
+            })
+        else:
+            util.save_entry(data['title'],data['textarea'])
+            print("saved")
+            return redirect('entry',TITLE= data['title'])
+    return render(request,"encyclopedia/add.html")
+    # return HttpResponse('hi')
