@@ -66,4 +66,18 @@ def addEntry(request):
             print("saved")
             return redirect('entry',TITLE= data['title'])
     return render(request,"encyclopedia/add.html")
-    # return HttpResponse('hi')
+
+def editEntry(request, TITLE): #ttile lets say CSS
+    #jab edit button click hoga tab ka kam hai ye
+    if request.method == "POST":
+        updateTextArea = request.POST['textarea']
+        util.save_entry(TITLE,updateTextArea)
+        return redirect('entry',TITLE=TITLE)
+
+
+    #normal chal raha hai 
+    valueMD = util.get_entry(TITLE)
+    return render(request,"encyclopedia/edit.html",{
+        "VALUE":valueMD,
+        "TITLE":TITLE
+    })
