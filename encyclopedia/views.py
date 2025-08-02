@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-import markdown
+import markdown, random
 from . import util
 from django import forms
 
@@ -81,3 +81,9 @@ def editEntry(request, TITLE): #ttile lets say CSS
         "VALUE":valueMD,
         "TITLE":TITLE
     })
+
+
+def randomPage(request):
+    entries = util.list_entries()
+
+    return redirect('entry',TITLE=random.choice(entries ))
