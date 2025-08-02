@@ -18,5 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include("encyclopedia.urls"))
+    # idk wiki hona chaiye ya nhi baad mein dekheta hon 
+    # abi toh kam chalne do
+    path('wiki/', include("encyclopedia.urls"))
 ]

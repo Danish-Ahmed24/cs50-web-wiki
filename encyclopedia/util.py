@@ -35,3 +35,9 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+
+def toLowerCaseList(list):
+    newlist = []
+    for l in list:
+        newlist.append(l.lower())
+    return newlist
