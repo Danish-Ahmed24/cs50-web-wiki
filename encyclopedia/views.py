@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 import markdown, random
 from . import util
-from django import forms
 
 
 def index(request):
